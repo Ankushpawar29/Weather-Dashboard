@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Weather App</title>
+    <link rel="stylesheet" href="style_3.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container" role="main" aria-label="Advanced Weather Dashboard">
+        <header>
+            <h1>🌤️ Weather Dashboard</h1>
+            <button id="geoBtn" aria-label="Use current location">📍 My Location</button>
+        </header>
+        
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="Search city (e.g., Mumbai)..." 
+                       aria-label="Search city weather" autocomplete="off" list="citySuggestions">
+                <datalist id="citySuggestions"></datalist>
+                <button id="searchBtn" aria-label="Search weather">🔍 Search</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading" aria-live="polite">🔄 Fetching weather data...</div>
+        <div id="error" class="error" role="alert" aria-live="assertive"></div>
+
+        <div id="currentWeather" class="weather-card current" aria-label="Current conditions">
+            <div class="temp-display">
+                <span id="currentTemp">--°C</span>
+                <span id="weatherIcon" aria-hidden="true"></span>
+            </div>
+            <div class="weather-details">
+                <p id="locationName">-</p>
+                <p id="description">-</p>
+                <div class="stats-grid">
+                    <div><span id="humidity">--%</span><br>Humidity</div>
+                    <div><span id="wind">-- m/s</span><br>Wind</div>
+                    <div><span id="pressure">-- hPa</span><br>Pressure</div>
+                    <div><span id="visibility">-- km</span><br>Visibility</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="forecastSection" class="forecast-container">
+            <h2>5-Day Forecast</h2>
+            <div class="forecast-grid" id="forecastGrid"></div>
+        </div>
+
+        <div class="sidebar">
+            <div class="favorites-section">
+                <h3>⭐ Saved Locations</h3>
+                <div id="favoritesList"></div>
+                <button id="clearFavorites" aria-label="Clear all favorites">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
